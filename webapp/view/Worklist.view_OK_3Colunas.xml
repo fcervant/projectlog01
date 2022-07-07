@@ -1,0 +1,123 @@
+<mvc:View
+    controllerName="projectlog01.controller.Worklist"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic">
+
+    <semantic:SemanticPage
+        id="page"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false">
+
+        <semantic:titleHeading>
+            <Title id="title01"
+                text="{i18n>worklistTitle}"
+                level="H2"/>
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <Table
+                id="table"
+                width="auto"
+                items="{
+                    path: '/logs',
+                    sorter: {
+                        path: 'Data',
+                        descending: true
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingThreshold="20"
+                growingScrollToLoad="false"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar id="_IDGenOverflowToolbar1">
+                        <Title
+                            id="tableHeader"
+                            text="{worklistView>/worklistTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                        <SearchField
+                            id="searchField"
+                            tooltip="{i18n>worklistSearchTooltip}"
+                            search=".onSearch">
+                            <layoutData>
+                                <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData1"
+                                    maxWidth="200px"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+
+                    <Column id="statusColumn" width="4rem" hAlign="Center">
+                        <Text text="{i18n>tableStatusColumnTitle}" id="statusColumnTitle"/>
+                    </Column>
+
+                    <Column id="dataHoraColumn" width="10rem" hAlign="Left">
+                        <Text text="{i18n>tableDataHoraColumnTitle}" id="dataHoraTitle"/>
+                    </Column>
+
+                    <Column id="companyCodeColumn" hAlign="Left">
+                        <Text text="{i18n>tableCompanyCodeColumnTitle}" id="companyCodeTitle"/>
+                    </Column>
+
+                    <!-- <Column id="processoColumn" hAlign="Left">
+                        <Text text="{i18n>tableProcessoColumnTitle}" id="processoColumnTitle"/>
+                    </Column> -->
+                   
+                    <!-- <Column id="idProcessoColumn" width="15rem" hAlign="Left">
+                        <Text text="{i18n>tableIdProcessoColumnTitle}" id="idProcessoColumnTitle"/>
+                    </Column> -->
+
+                    <!-- <Column id="msgColumn" width="15rem" hAlign="Left">
+                                <Text text="{i18n>tableMsgColumnTitle}" id="msgColumnTitle"/>
+                    </Column> -->
+
+                </columns>
+
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem1"
+                        type="Navigation"
+                        press=".onPress">
+                        <cells>
+
+                            <ObjectStatus id="_IDGenObjectStatus1" class="sapUiSmallMarginBottom" text="{MsgStatus}" icon="sap-icon://cancel" state="Information" />
+
+                            <ObjectNumber id="_IDGenObjectDateTime" unit="{path: 'Data', type: 'sap.ui.model.odata.type.DateTime',constraints: { displayFormat: 'DateTime' }}"   />
+
+                            <ObjectIdentifier id="_IDGenObjectIdentifier2" title="{CompanyCode}"/>
+                            <ObjectNumber id="_IDGenObjectNumber2" />
+
+                            <ObjectIdentifier id="_IDGenObjectIdentifier99" title="123456"/>
+                            <ObjectNumber id="_IDGenObjectNumber99" />
+
+                            <Text id="_IDGenText1" text="{path: 'CompanyCode'}"/>
+
+                            <!-- <ObjectIdentifier id="_IDGenObjectIdentifier1" title="{CompanyCode}"/>
+                            <ObjectNumber id="_IDGenObjectNumber1" /> -->
+
+                            <!-- <ObjectIdentifier id="_IDGenObjectIdentifier3" title="{Seq}"/>
+                            <ObjectNumber id="_IDGenObjectNumber3" /> -->
+
+                            <!-- <ObjectIdentifier id="_IDGenObjectIdentifier4" title="{Msg}"/>
+                            <ObjectNumber id="_IDGenObjectNumber4" /> -->
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </semantic:content>
+
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+        </semantic:sendEmailAction>
+
+    </semantic:SemanticPage>
+
+</mvc:View>

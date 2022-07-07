@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.5"
+metadata:
+  name: projectlog01
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: FIORIPRD_GATEWAY
+          url: https://fiori.votorantim.com.br:443
+        app:
+          name: ZFRC_PROJECT01
+          description: Teste com projeto
+          package: ZPGWGLHR_INTEG_UNICO
+          transport: "FI5K900333"

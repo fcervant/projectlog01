@@ -1,0 +1,92 @@
+<mvc:View
+    controllerName="projectlog01.controller.Object"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <semantic:SemanticPage
+        id="page"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false"
+        busy="{objectView>/busy}"
+        busyIndicatorDelay="{objectView>/delay}">
+
+        <semantic:titleHeading>
+            <Title id="_IDGenTitle1"
+                text="ID Processo {IdProcesso} - Detalhe"
+                level="H2"/>
+        </semantic:titleHeading>
+
+        <!-- <semantic:titleHeading>
+            <Title id="_IDGenTitle2"
+                  text="ObjectView 3"
+                level="H3"/>
+        </semantic:titleHeading> -->
+
+        <semantic:headerContent>
+            <ObjectNumber id="_IDGenObjectNumber1" />
+
+			<FlexBox id="_IDGenFlexBox1"
+				alignItems="Start"
+				justifyContent="SpaceBetween">
+				<Panel id="_IDGenPanel1" backgroundDesign="Transparent">
+                    <ObjectAttribute id="_IDGenObjectAttribute2" title="{i18n>tableCompanyCodeColumnTitle}" text="{path: 'CompanyCode'}"/>
+                    <ObjectAttribute id="_IDGenObjectAttribute1" title="{i18n>tableGuidColumnTitle}" text="{path: 'Guid'}"/>
+                    <Label id="_IDGenLabel1" text="Processo: "/>
+                    <Text id="_IDGenText1" text='{Processo}' tooltip="{Processo}" wrapping="false"/>
+					<!-- <Text id="_IDGenText2" text='{CompanyCode}' tooltip="Código da empresa" wrapping="false"/> -->
+					<!-- <ObjectAttribute id="_IDGenObjectAttribute2" title="{i18n>ObjectPriceTitle}" text="{path: 'CompanyCode',formatter: '.formatter.numberUnit'} EUR"/> -->
+				</Panel>
+				<Panel id="_IDGenPanel2" backgroundDesign="Transparent">
+                    <ObjectStatus id="_IDGenObjectStatus1" icon="{path: 'MsgStatus', formatter: '.formatter.formatStatus'}" state="{path: 'MsgStatus', formatter: '.formatter.statusState'}"/>      
+				</Panel>
+			</FlexBox>
+        </semantic:headerContent>
+
+        <semantic:content>
+
+            <l:VerticalLayout id="_IDGenVerticalLayout1" width="100%">
+        
+            <Panel id="_IDGenPanel3"
+                class="sapUiNoContentPadding"
+                backgroundDesign="Transparent"
+                headerText="{i18n>ObjectSupplierTabTitle}">
+                <content>
+                    <form:SimpleForm id="_IDGenSimpleForm1"
+                        minWidth="1024"
+                        maxContainerCols="2"
+                        editable="false"
+                        layout="ResponsiveGridLayout"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        columnsL="1"
+                        columnsM="1">
+                        <form:content>
+                            <Label id="_IDGenLabel2" text="{i18n>tableProcessoColumnTitle}"/>
+                            <Text id="_IDGenText3" text="{MsgStatus}"/>
+                            <Label id="_IDGenLabel3" text="{i18n>tableDataHoraColumnTitle}"/>
+                            <Text id="_IDGenText4" text="{Data}"/>
+                            <Label id="_IDGenLabel4" text="{i18n>tableMsgColumnTitle}"/>
+                            <Text id="_IDGenText5" text="{Msg}"/>
+                            <Label id="_IDGenLabel5" text="{i18n>tableCompanyCodeColumnTitle}"/>
+                            <Text id="_IDGenText6" text="{CompanyCode}"/>
+                        </form:content>
+                    </form:SimpleForm>
+                </content>
+            </Panel>
+            </l:VerticalLayout>            
+        </semantic:content>
+        
+
+
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+        </semantic:sendEmailAction>
+
+    </semantic:SemanticPage>
+
+</mvc:View>
